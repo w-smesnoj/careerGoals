@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- viewport-fit=cover lets the page paint under the notch and home
+         indicator (env(safe-area-inset-*) is 0 without it); resizes-content
+         makes Android's keyboard shrink the layout the way iOS's does. Zoom
+         stays enabled - inputs are 16px instead, which is what stops iOS
+         zooming into them. -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content"
+    />
+    <!-- The status bar matches the grouped background at the top of the page. -->
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f2f2f7" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b0b0e" />
+    <meta name="color-scheme" content="light dark" />
+    <!-- Add to Home Screen: launches full screen, no Safari bars. iOS takes
+         the icon from apple-touch-icon (PNG only) and the label from
+         apple-mobile-web-app-title. -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Goals" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>Career Goals</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

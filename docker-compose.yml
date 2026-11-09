@@ -1,0 +1,13 @@
+services:
+  mongo:
+    image: mongo:8
+    container_name: careergoals-mongo
+    restart: unless-stopped
+    ports:
+      # Host 27019 keeps this out of the way of any other MongoDB on 27017 or 27018.
+      - '27019:27017'
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

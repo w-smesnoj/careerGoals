@@ -1,0 +1,360 @@
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --danger: #e5484d;
+  /* Special-day categories. Each picks one of these, so a work-free holiday, a
+     booked vacation and a birthday stay tellable apart at a glance - and none
+     of them is the accent, which already means "today". Dark enough steps to
+     be text on a card: the calendar names a day in its category's colour.
+     The defaults: Holidays amber, Birthdays pink, Vacations teal, Occasions
+     indigo. */
+  --hue-red: #b91c1c;
+  --hue-orange: #c2410c;
+  --hue-amber: #b45309;
+  --hue-green: #15803d;
+  --hue-teal: #0f766e;
+  --hue-blue: #1d4ed8;
+  --hue-indigo: #4f46e5;
+  --hue-pink: #be185d;
+  --hue-brown: #8a5a2b;
+  --hue-slate: #475569;
+  /* The charts' one band for time off, whichever categories it covers. */
+  --time-off: var(--hue-teal);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  /* Calendar heatmap ramp: 0 is "due, none of it done", 4 is a full day. */
+  --heat-0: #ece9f0;
+  --heat-1: rgba(170, 59, 255, 0.22);
+  --heat-2: rgba(170, 59, 255, 0.45);
+  --heat-3: rgba(170, 59, 255, 0.72);
+  --heat-4: #aa3bff;
+  /* A unit chart's one series. Light reuses the accent; dark gets its own
+     step, because the dark accent is too light to hold a line on #16171d. */
+  --chart-series: #aa3bff;
+  /* The compare page's fixed identity slots - blue, orange, aqua. Validated
+     as a set (CVD and normal-vision separation, all pairs) against --bg in
+     each mode; aqua is under 3:1 on white, so every series also carries its
+     name in text. Never cycle past three. */
+  --chart-1: #2a78d6;
+  --chart-2: #eb6834;
+  --chart-3: #1baf7a;
+  /* Apple's system palette, for screens in its design language (Today first).
+     Grouped background with cards on it, translucent bar materials, and
+     labels/fills/separators as alpha over whatever sits beneath - the way
+     iOS defines them, so they hold on any surface. */
+  --sys-grouped-bg: #f2f2f7;
+  --sys-card: #ffffff;
+  --sys-label-2: rgba(60, 60, 67, 0.62);
+  --sys-label-3: rgba(60, 60, 67, 0.3);
+  --sys-separator: rgba(60, 60, 67, 0.22);
+  --sys-fill: rgba(118, 118, 128, 0.12);
+  --sys-material: rgba(250, 250, 252, 0.78);
+  --sys-material-thick: rgba(255, 255, 255, 0.88);
+  /* Glass for controls that float over the page (the tab bar): clearer than
+     the bar materials, held off the page by a rim, a lit top edge and a soft
+     shadow rather than a divider. The lens is the selected tab's pill inside
+     it - a fill, never a second layer of glass; lifted under a finger it
+     brightens into a droplet. */
+  --sys-glass: rgba(255, 255, 255, 0.66);
+  --sys-glass-rim: rgba(0, 0, 0, 0.07);
+  --sys-glass-highlight: rgba(255, 255, 255, 0.9);
+  --sys-glass-shadow: 0 8px 28px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06);
+  --sys-lens: rgba(118, 118, 128, 0.14);
+  --sys-lens-lifted: rgba(255, 255, 255, 0.85);
+  /* The overlay scrollbar (OverlayScrollbar): a thumb that holds on any
+     content thanks to a rim of the opposite tone, darker while held, and a
+     faint track that only shows while the pointer is at the edge. */
+  --sys-scroller: rgba(0, 0, 0, 0.4);
+  --sys-scroller-held: rgba(0, 0, 0, 0.56);
+  --sys-scroller-rim: rgba(255, 255, 255, 0.55);
+  --sys-scroller-track: rgba(0, 0, 0, 0.05);
+  --sys-red: #ff3b30;
+  /* Orange is too light to read as text on white; this is its text step. */
+  --sys-orange-text: #c45500;
+  /* What a white label sits on in a swipe action - the accent, held dark
+     enough in both modes to keep the label readable. */
+  --sys-tint-strong: #9b2ff0;
+  --sys-radius: 14px;
+  /* A sheet is a raised grouped surface: in dark mode it lifts above the
+     page, so its cards step up again rather than vanishing into it. */
+  --sheet-bg: #f2f2f7;
+  --sheet-card: #ffffff;
+  --segment-thumb: #ffffff;
+  /* The rest of Apple's system palette, for icon tiles, switches and the
+     odd mark. Fills only - none of these is dark enough to be text on white. */
+  --sys-blue: #007aff;
+  --sys-green: #34c759;
+  --sys-orange: #ff9500;
+  --sys-yellow: #ffcc00;
+  --sys-indigo: #5856d6;
+  --sys-pink: #ff2d55;
+  --sys-gray: #8e8e93;
+  /* The goal palette. Five, validated as a set (every pair, colour-blind
+     separation included) against white and against the dark surfaces in their
+     own steps below - eight or six failed: teal/green and orange/yellow sit
+     too close, and graphite reads as grey. No red: red means "failed" here.
+     Marks only - rings, the heatmap, swatches, dots - never text. */
+  --goal-purple: #aa3bff;
+  --goal-blue: #2a78d6;
+  --goal-green: #248a3d;
+  --goal-orange: #c45500;
+  --goal-pink: #c2338a;
+  /* What the page itself is painted with - the grouped grey on screens in
+     the iOS design language. A receding page keeps it under its own corners. */
+  --page-bg: var(--bg);
+  /* Motion: the strong curves (ease-out for entering and exiting, ease-in-out
+     for moving on screen) and iOS's own sheet curve. Springs live in
+     lib/motion.ts; these are for the CSS that can't be a spring. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  /* The iOS type ramp. Tracking is size-specific - tight on display sizes,
+     neutral on body, a touch open on captions - and leading tightens as the
+     size grows, so each step is a set rather than a size alone. */
+  --type-large-title: 700 2.125rem/1.1 var(--sans);
+  --track-large-title: -0.022em;
+  --type-title1: 700 1.75rem/1.15 var(--sans);
+  --track-title1: -0.02em;
+  --type-title2: 700 1.375rem/1.2 var(--sans);
+  --track-title2: -0.016em;
+  --type-title3: 600 1.25rem/1.25 var(--sans);
+  --track-title3: -0.012em;
+  --type-headline: 600 1.0625rem/1.3 var(--sans);
+  --type-body: 400 1.0625rem/1.3 var(--sans);
+  --track-body: -0.008em;
+  --type-callout: 400 1rem/1.3 var(--sans);
+  --type-subhead: 400 0.9375rem/1.3 var(--sans);
+  --type-footnote: 400 0.8125rem/1.35 var(--sans);
+  --type-caption: 400 0.75rem/1.3 var(--sans);
+  --track-caption: 0.01em;
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --danger: #e5484d;
+    --hue-red: #f87171;
+    --hue-orange: #fb923c;
+    --hue-amber: #fbbf24;
+    --hue-green: #4ade80;
+    --hue-teal: #2dd4bf;
+    --hue-blue: #60a5fa;
+    --hue-indigo: #a5b4fc;
+    --hue-pink: #f472b6;
+    --hue-brown: #d4a373;
+    --hue-slate: #94a3b8;
+    --time-off: var(--hue-teal);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --heat-0: #24252e;
+    --heat-1: rgba(192, 132, 252, 0.25);
+    --heat-2: rgba(192, 132, 252, 0.45);
+    --heat-3: rgba(192, 132, 252, 0.7);
+    --heat-4: #c084fc;
+    --chart-series: #b06cf5;
+    --chart-1: #3987e5;
+    --chart-2: #d95926;
+    --chart-3: #199e70;
+    --sys-grouped-bg: #0b0b0e;
+    --sys-card: #1c1c20;
+    --sys-label-2: rgba(235, 235, 245, 0.6);
+    --sys-label-3: rgba(235, 235, 245, 0.3);
+    --sys-separator: rgba(84, 84, 88, 0.6);
+    --sys-fill: rgba(118, 118, 128, 0.24);
+    --sys-material: rgba(22, 23, 29, 0.74);
+    --sys-material-thick: rgba(44, 44, 48, 0.86);
+    --sys-glass: rgba(40, 40, 46, 0.62);
+    --sys-glass-rim: rgba(255, 255, 255, 0.1);
+    --sys-glass-highlight: rgba(255, 255, 255, 0.14);
+    --sys-glass-shadow: 0 8px 28px rgba(0, 0, 0, 0.45), 0 1px 4px rgba(0, 0, 0, 0.3);
+    --sys-lens: rgba(255, 255, 255, 0.12);
+    --sys-lens-lifted: rgba(255, 255, 255, 0.22);
+    --sys-scroller: rgba(255, 255, 255, 0.4);
+    --sys-scroller-held: rgba(255, 255, 255, 0.58);
+    --sys-scroller-rim: rgba(0, 0, 0, 0.35);
+    --sys-scroller-track: rgba(255, 255, 255, 0.07);
+    --sys-red: #ff453a;
+    --sys-orange-text: #ff9f0a;
+    --sys-tint-strong: #9333ea;
+    --sheet-bg: #1c1c20;
+    --sheet-card: #2c2c31;
+    --segment-thumb: #5b5b60;
+    --sys-blue: #0a84ff;
+    --sys-green: #30d158;
+    --sys-orange: #ff9f0a;
+    --sys-yellow: #ffd60a;
+    --sys-indigo: #5e5ce6;
+    --sys-pink: #ff375f;
+    --sys-gray: #8e8e93;
+    /* Re-stepped for the dark surfaces, not flipped: validated against both
+       #1c1c20 (cards) and #0b0b0e (the page). Green is darker than its
+       light-mode step on purpose - next to orange it was 5.4 apart for
+       protan eyes at the lighter step, under the floor of 6. */
+    --goal-purple: #b06cf5;
+    --goal-blue: #2563d6;
+    --goal-green: #137a42;
+    --goal-orange: #d9741a;
+    --goal-pink: #dd5f97;
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+}
+
+/* The colour a goal's marks wear: set on any element that draws for one goal,
+   inherited by its rings, cells and dots. */
+[data-goal-color] {
+  --goal: var(--goal-purple);
+}
+
+[data-goal-color='blue'] {
+  --goal: var(--goal-blue);
+}
+
+[data-goal-color='green'] {
+  --goal: var(--goal-green);
+}
+
+[data-goal-color='orange'] {
+  --goal: var(--goal-orange);
+}
+
+[data-goal-color='pink'] {
+  --goal: var(--goal-pink);
+}
+
+/* The colour a special-day category's marks wear: set on any element that
+   draws for one (a tile, a chip, a label, a tinted day), inherited by what's
+   inside it. The class form is for elements a library gives only classes to
+   (the timeline's day columns). */
+[data-hue],
+.hue-indigo {
+  --hue: var(--hue-indigo);
+}
+
+[data-hue='red'],
+.hue-red {
+  --hue: var(--hue-red);
+}
+
+[data-hue='orange'],
+.hue-orange {
+  --hue: var(--hue-orange);
+}
+
+[data-hue='amber'],
+.hue-amber {
+  --hue: var(--hue-amber);
+}
+
+[data-hue='green'],
+.hue-green {
+  --hue: var(--hue-green);
+}
+
+[data-hue='teal'],
+.hue-teal {
+  --hue: var(--hue-teal);
+}
+
+[data-hue='blue'],
+.hue-blue {
+  --hue: var(--hue-blue);
+}
+
+[data-hue='pink'],
+.hue-pink {
+  --hue: var(--hue-pink);
+}
+
+[data-hue='brown'],
+.hue-brown {
+  --hue: var(--hue-brown);
+}
+
+[data-hue='slate'],
+.hue-slate {
+  --hue: var(--hue-slate);
+}
+
+/* The mobile floor: no grey flash on tap (every control brings its own
+   :active), and no font inflation when a phone turns sideways. */
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+/* Wherever the app draws a scroller's bar itself (OverlayScrollbar), the
+   browser's own - and the width it takes - goes. */
+[data-overlay-scroller] {
+  scrollbar-width: none;
+}
+
+[data-overlay-scroller]::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 36px;
+  letter-spacing: -1.08px;
+}
+
+p {
+  margin: 0;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 15px;
+  border-radius: 4px;
+  padding: 4px 8px;
+  color: var(--text-h);
+  background: var(--code-bg);
+}
